@@ -41,7 +41,7 @@ public class PlayerSetup : MonoBehaviour
     
     private IEnumerator RetryFindRemoteCamera()
     {
-        int maxAttempts = 10;
+        int maxAttempts = 5;
         int attempts = 0;
         
         while (attempts < maxAttempts)
