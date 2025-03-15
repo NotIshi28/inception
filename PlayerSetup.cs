@@ -41,7 +41,7 @@ public class PlayerSetup : MonoBehaviour
     
     private IEnumerator RetryFindRemoteCamera()
     {
-        int maxAttempts = 5;
+        int maxAttempts = 10;
         int attempts = 0;
         
         while (attempts < maxAttempts)
@@ -59,6 +59,7 @@ public class PlayerSetup : MonoBehaviour
             if (attempts == maxAttempts)
             {
                 Debug.LogError("Failed to find any remote cameras after " + maxAttempts + " attempts");
+                break;
             }
         }
     }
