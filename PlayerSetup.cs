@@ -26,6 +26,14 @@ public class PlayerSetup : MonoBehaviour
         camera.SetActive(false);
 
         StartCoroutine(DelayedRemoteCameraSetup());
+        
+        // StartCoroutine(Mauj());
+    }
+
+    public IEnumerator Mauj()
+    {
+        yield return new WaitForSeconds(5f);
+        StopAllCoroutines();
     }
 
     private IEnumerator DelayedRemoteCameraSetup()
@@ -39,28 +47,30 @@ public class PlayerSetup : MonoBehaviour
         }
     }
     
+    int maxAttempts = 10;
+    int attempts = 0;
     private IEnumerator RetryFindRemoteCamera()
     {
-        int maxAttempts = 10;
-        int attempts = 0;
         
         while (attempts < maxAttempts)
         {
             yield return new WaitForSeconds(1f);
             attempts++;
             
-            Debug.Log("Retrying to find remote camera, attempt " + attempts);
+            // Debug.Log("Retrying to find remote camera, attempt " + attempts);
             if (FindAndActivateRemoteCamera())
             {
-                Debug.Log("Successfully found remote camera on retry " + attempts);
+                // Debug.Log("Successfully found remote camera on retry " + attempts);
+
                 break;
             }
             
             if (attempts == maxAttempts)
             {
-                Debug.LogError("Failed to find any remote cameras after " + maxAttempts + " attempts");
+                // Debug.LogError("Failed to find any remote cameras after " + maxAttempts + " attempts");
                 break;
             }
+            Debug.Log(attempts);
         }
     }
 
